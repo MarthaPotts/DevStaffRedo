@@ -1,0 +1,31 @@
+{
+  "name": "devstaffredo",
+  "version": "1.0.0",
+  "description": "node cli staff mgmt tool",
+  "main": "index.js",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.1.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarthaPotts/DevStaffRedo.git"
+  },
+  "keywords": [
+    "staff",
+    "employee",
+    "management",
+    "database"
+  ],
+  "author": "Martha Potts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarthaPotts/DevStaffRedo/issues"
+  },
+  "homepage": "https://github.com/MarthaPotts/DevStaffRedo#readme"
+}
