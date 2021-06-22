@@ -1,12 +1,12 @@
 //dependencies 
 const mysql = require('mysql'); 
 const inquirer = require('inquirer'); 
-const cTable = requre('console.table'); 
+const cTable = require('console.table'); 
 //import query functions
-const db = require('./db'); 
-const { inherits } = require('node:util');
-const { exit } = require('node:process');
-const { addDepartment, deleteDepartment, addEmployee, deleteEmployee, addRole, deleteRole, updateEmployee, findAllRoles, findAllDepartments } = require('./db');
+const db = require('../DevStaffRedo/db'); 
+// const { inherits } = require('node:util');
+// const { exit } = require('node:process');
+// const { addDepartment, deleteDepartment, addEmployee, deleteEmployee, addRole, deleteRole, updateEmployee, findAllRoles, findAllDepartments } = require('./db');
 
 //initialize
 init(); 
@@ -127,7 +127,7 @@ async function startMenu() {
             case 'VIEW_TOTAL_BUDGET': 
                 return utilBudget(); 
             default: 
-                return exit(); 
+                return exitProgram(); 
         } 
 }
 //department
@@ -150,44 +150,44 @@ async function addDepartment() {
 
     startMenu(); 
 }
-async function updateDepartment() {
-    const departments = await findAllDepartments(); 
-    const departmentChoices = departments.map( ({id, name}) => ({
-        name: `${department.name}`, 
-        value: id 
-    })); 
-    const {departmentId} = await inquirer.prompt([
-        {
-            type:'list', 
-            name: 'departmentId', 
-            message: 'select which department to update', 
-            choices: departmentChoices
-        }
-    ]); 
-    await db.updateDepartment(departmentId); 
-    console.log(`department updated in database`); 
+// async function updateDepartment() {
+//     const departments = await findAllDepartments(); 
+//     const departmentChoices = departments.map( ({id, name}) => ({
+//         name: `${department.name}`, 
+//         value: id 
+//     })); 
+//     const {departmentId} = await inquirer.prompt([
+//         {
+//             type:'list', 
+//             name: 'departmentId', 
+//             message: 'select which department to update', 
+//             choices: departmentChoices
+//         }
+//     ]); 
+//     await db.updateDepartment(departmentId); 
+//     console.log(`department updated in database`); 
 
-    startMenu(); 
-}
-async function deleteDepartment(departmentId) {
-    const departments = await db.findAllDepartments(); 
-    const departmentChoices = departments.map( ({id, name}) => ({
-        name: name, 
-        value: id
-    })); 
-    const {departmentId} = await inquirer.prompt([
-        {
-            type: 'list', 
-            name: 'departmentId', 
-            message: 'please enter the department to remove (WARNING: this will also remove associated roles and employees)', 
-            choices: departmentChoices
-        }
-    ]); 
-    await db.deleteDepartment(departmentId);
-    console.log(`Removed department from database`); 
+//     startMenu(); 
+// }
+// async function deleteDepartment(departmentId) {
+//     const departments = await db.findAllDepartments(); 
+//     const departmentChoices = departments.map( ({id, name}) => ({
+//         name: name, 
+//         value: id
+//     })); 
+//     const {departmentId} = await inquirer.prompt([
+//         {
+//             type: 'list', 
+//             name: 'departmentId', 
+//             message: 'please enter the department to remove (WARNING: this will also remove associated roles and employees)', 
+//             choices: departmentChoices
+//         }
+//     ]); 
+//     await db.deleteDepartment(departmentId);
+//     console.log(`Removed department from database`); 
     
-    startMenu(); 
-}
+//     startMenu(); 
+// }
 //employee
 async function viewEmployees() {
     const employees = await db.findAllEmployees(); 
@@ -402,7 +402,7 @@ async function updateManager()  {
         {
             type: 'list', 
             name: 'employeeId', 
-            message: 'select employee manager to update'
+            message: 'select employee manager to update',
             choices: employeeChoices
         }
     ]); 
@@ -425,7 +425,7 @@ async function updateManager()  {
     startMenu(); 
 }
 //exit
-function exit() {
+function exitProgram() {
     console.log(`Goodbye`); 
     process.exit(); 
 }
